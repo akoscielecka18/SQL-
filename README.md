@@ -7,4 +7,13 @@ select customer_name, count(*) <br> from rentals <br> group by customer_name <br
 - Santa wants to know which gifts weigh more than 1 kg. Can you list them?
 
 select gift_name <br> from gifts <br> where weight_kg > 1
+#### Day 3
+- You’re trying to identify the most calorie-packed candies to avoid during your holiday binge. Write a query to rank candies based on their calorie count within each category. Include the candy name, category, calories, and rank (rank_in_category) within the category.
+
+select candy_name, candy_category, calories, <br>
+dense_rank() over(partition by candy_category order by calories desc) as ranking <br>
+from candy_nutrition
+
+
+
 
