@@ -30,3 +30,10 @@ on ski.resort_id = snow.resort_id
 group by region
 order by average_snowfall
 ````
+#### Day 5
+- This year, we're celebrating Christmas in the Southern Hemisphere! Which beaches are expected to have temperatures above 30°C on Christmas Day?
+````sql
+select beach_name
+from beach_temperature_predictions
+where expected_temperature_c > 30 and date = "2024-12-25"
+````
