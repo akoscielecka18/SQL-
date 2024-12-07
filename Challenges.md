@@ -37,3 +37,16 @@ select beach_name
 from beach_temperature_predictions
 where expected_temperature_c > 30 and date = "2024-12-25"
 ````
+#### Day 6
+- Scientists are tracking polar bears across the Arctic to monitor their migration patterns and caloric intake. Write a query to find the top 3 polar bears that have traveled the longest total distance in December 2024. Include their bear_id, bear_name, and total_distance_traveled in the results.
+````sql
+select t.bear_id as bear_id, bear_name, sum(distance_km) as total_distance_traveled
+from polar_bears as p
+inner join tracking as t
+on p.bear_id = t.bear_id
+where t.date between "2024-12-01" and "2024-12-31"
+group by t.bear_id
+order by sum(distance_km) desc
+limit 3
+````
+
