@@ -49,7 +49,7 @@ group by t.bear_id
 order by sum(distance_km) desc
 limit 3
 ````
-#### 7
+#### Day 7
 - The owner of a winter market wants to know which vendors have generated the highest revenue overall. For each vendor, calculate the total revenue for all their items and return a list of the top 2 vendors by total revenue. Include the vendor_name and total_revenue in your results.
 ````sql
 select vendor_name, sum(quantity_sold*price_per_unit) as total_revenue
@@ -59,5 +59,12 @@ on v.vendor_id = s.vendor_id
 group by vendor_name
 order by total_revenue desc
 limit 2
+````
+#### Day 8
+- You are managing inventory in Santa's workshop. Which gifts are meant for "good" recipients? List the gift name and its weight.
+````sql
+select gift_name, weight_kg
+from gifts
+where recipient_type = "good"
 ````
 
