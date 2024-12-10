@@ -67,4 +67,16 @@ select gift_name, weight_kg
 from gifts
 where recipient_type = "good"
 ````
+#### Day 9
+- A community is hosting a series of festive feasts, and they want to ensure a balanced menu. Write a query to identify the top 3 most calorie-dense dishes (calories per gram) served for each event. Include the dish_name, event_name, and the calculated calorie density in your results.
+````sql
+with cte as (select dish_name , e.event_name, m.calories/m.weight_g as col1,
+ROW_NUMBER() OVER (PARTITION BY e.event_name ORDER BY m.calories/m.weight_g DESC) AS intRow
+from events as e
+inner join menu as m 
+on e.event_id = m.event_id)
 
+select dish_name, event_name, col1
+from cte 
+where intRow in(1,2,3)
+````
