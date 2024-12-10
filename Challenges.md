@@ -80,3 +80,22 @@ select dish_name, event_name, col1
 from cte 
 where intRow in(1,2,3)
 ````
+#### Day 10
+- You are tracking your friends' New Year’s resolution progress. Write a query to calculate the following for each friend: number of resolutions they made, number of resolutions they completed, and success percentage (% of resolutions completed) and a success category based on the success percentage: <br>
+Green: If success percentage is greater than 75%. <br>
+Yellow: If success percentage is between 50% and 75% (inclusive). <br>
+Red: If success percentage is less than 50%.
+````sql
+SELECT 
+    friend_name, 
+    COUNT(DISTINCT resolution_id) AS num, 
+    SUM(is_completed) AS com, 
+    (CAST(SUM(is_completed) AS FLOAT) / COUNT(DISTINCT resolution_id)) * 100 AS pct,
+    CASE 
+        WHEN (CAST(SUM(is_completed) AS FLOAT) / COUNT(DISTINCT resolution_id)) * 100 < 50 THEN 'Red'
+        WHEN (CAST(SUM(is_completed) AS FLOAT) / COUNT(DISTINCT resolution_id)) * 100 BETWEEN 50 AND 75 THEN 'Yellow'
+        ELSE 'Green' 
+    END AS color
+FROM resolutions 
+GROUP BY friend_name
+````
