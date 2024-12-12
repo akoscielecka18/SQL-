@@ -99,3 +99,23 @@ SELECT
 FROM resolutions 
 GROUP BY friend_name
 ````
+#### Day 11
+- You are preparing holiday gifts for your family. Who in the family_members table are celebrating their birthdays in December 2024? List their name and birthday.
+````sql
+select name 
+from family_members
+where birthday between "2024-12-01" and "2024-12-31"
+````
+#### Day 12 
+- A collector wants to identify the top 3 snow globes with the highest number of figurines. Write a query to rank them and include their globe_name, number of figurines, and material.
+````sql
+with cte as (select globe_name, count(*) as num, material 
+from snow_globes as a
+inner join figurines as f 
+on a.globe_id = f.globe_id
+group by globe_name, material
+order by num desc)
+select *
+from cte
+limit 3
+````
