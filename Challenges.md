@@ -119,3 +119,10 @@ select *
 from cte
 limit 3
 ````
+#### Day 13
+- We need to make sure Santa's sleigh is properly balanced. Find the total weight of gifts for each recipient.
+````sql
+select recipient, sum(weight_kg) 
+from gifts
+group by recipient
+````
