@@ -126,3 +126,10 @@ select recipient, sum(weight_kg)
 from gifts
 group by recipient
 ````
+#### Day 14
+- Which ski resorts had snowfall greater than 50 inches?
+````sql
+select resort_name
+from snowfall
+where snowfall_inches > 50
+````
