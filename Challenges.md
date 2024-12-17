@@ -151,3 +151,11 @@ select category, sum(quantity_sold*price_per_unit) as revenue
 from candy_sales 
 group by category
 ````
+#### Day 17
+- The Grinch is planning out his pranks for this holiday season. Which pranks have a difficulty level of “Advanced” or “Expert"? List the prank name and location (both in descending order).
+````sql
+select prank_name, location
+from grinch_pranks
+where difficulty in ("Advanced", "Expert") 
+order by prank_name desc, location desc
+````
