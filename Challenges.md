@@ -144,3 +144,10 @@ group by p.parent_id
 order by count(p.child_id) desc
 limit 3
 ````
+#### Day 16
+- As the owner of a candy store, you want to understand which of your products are selling best. Write a query to calculate the total revenue generated from each candy category.
+````sql
+select category, sum(quantity_sold*price_per_unit) as revenue
+from candy_sales 
+group by category
+````
