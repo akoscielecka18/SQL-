@@ -170,3 +170,31 @@ group by activity_name
 order by avg(rating) desc
 limit 2
 ````
+#### Day 19
+- Scientists are studying the diets of polar bears. Write a query to find the maximum amount of food (in kilograms) consumed by each polar bear in a single meal December 2024. Include the bear_name and biggest_meal_kg, and sort the results in descending order of largest meal consumed.
+```sql
+select bear_name, max(food_weight_kg) as kg
+from polar_bears as p 
+inner join meal_log as m 
+on p.bear_id = m.bear_id
+where date between "2024-12-01" and "2024-12-31"
+group by bear_name
+order by kg desc
+````
+#### Day 20
+- We are looking for cheap gifts at the market. Which vendors are selling items priced below $10? List the unique (i.e. remove duplicates) vendor names.
+````sql
+select distinct vendor_name
+from vendors as v  
+inner join item_prices as i 
+on v.vendor_id = i.vendor_id
+where price_usd < 10
+````
+#### Day 21
+- Santa needs to optimize his sleigh for Christmas deliveries. Write a query to calculate the total weight of gifts for each recipient type (good or naughty) and determine what percentage of the total weight is allocated to each type. Include the recipient_type, total_weight, and weight_percentage in the result.
+````sql
+select recipient_type, sum(weight_kg), 
+round(sum(weight_kg)/(select sum(weight_kg) from gifts)*100,2) as pct
+from gifts
+group by recipient_type
+````
