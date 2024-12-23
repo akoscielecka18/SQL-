@@ -198,3 +198,18 @@ round(sum(weight_kg)/(select sum(weight_kg) from gifts)*100,2) as pct
 from gifts
 group by recipient_type
 ````
+#### Day 22
+- We are hosting a gift party and need to ensure every guest receives a gift. Using the guests and guest_gifts tables, write a query to identify the guest(s) who have not been assigned a gift (i.e. they are not listed in the guest_gifts table).
+````sql
+select guest_name
+from guests as g  
+left join guest_gifts as gg  
+on g.guest_id = gg.guest_id
+where gg.guest_id is null
+````
+#### Day 23
+- The Grinch tracked his weight every day in December to analyze how it changed daily. Write a query to return the weight change (in pounds) for each day, calculated as the difference from the previous day's weight.
+````sql
+SELECT log_id, day_of_month, weight - LAG(weight) OVER (ORDER BY day_of_month) AS weight_change
+FROM grinch_weight_log
+````
